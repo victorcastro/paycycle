@@ -14,36 +14,59 @@ struct ContentView: View {
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
+    
+//    @FetchRequest(
+//        sortDescriptors: [NSSortDescriptor(keyPath: \CycleEntity.id, ascending: true)],
+//        animation: .default)
+    
+    
     private var items: FetchedResults<Item>
+//    private var cycles: FetchedResults<CycleEntity>
+    
+    private var cycles: [Cycle] {
+        let fmt = DateFormatter()
+        fmt.locale = Locale(identifier: "en_US_POSIX")
+        fmt.dateFormat = "yyyy-MM-dd"
+        
+        return [
+            Cycle(id: "001", label: "BCO", dayStart: fmt.date(from: "2022-12-12")!, dayFinish: fmt.date(from: "2023-01-11")!, dayPay: fmt.date(from: "2023-02-05")!),
+            Cycle(id: "002", label: "BVA", dayStart: fmt.date(from: "2022-11-19")!, dayFinish: fmt.date(from: "2022-12-18")!, dayPay: fmt.date(from: "2023-01-06")!)
+        ]
+    }
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+            VStack(alignment: .leading) {
+                DayComponent().padding(.horizontal)
+                
+                List {
+                    ForEach(cycles, id: \.id) { cycle in
+                        CycleComponent(cycle: cycle).padding(.horizontal)
                     }
+                    .onDelete(perform: deleteItems)
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
                     }
-                }
-            }
-            Text("Select an item")
+                    ToolbarItem {
+                        NavigationLink(destination: CreateCycleView()) {
+                            
+                                Label("Add Item", systemImage: "plus")
+                            
+                        }
+                        
+                    }
+                }.listStyle(.plain)
+            }.navigationBarTitle("Home", displayMode: .inline)
         }
     }
 
     private func addItem() {
         withAnimation {
+            
+            
+            
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
 

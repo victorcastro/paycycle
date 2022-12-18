@@ -7,15 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE21BA45294CF64F00CE8CBC /* CreateCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE21BA44294CF64F00CE8CBC /* CreateCycleView.swift */; };
+		CE90A467294F3F7C00EF292F /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90A466294F3F7C00EF292F /* PickerTextField.swift */; };
 		CEB5E539294BDA6700B89098 /* paycycleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5E538294BDA6700B89098 /* paycycleApp.swift */; };
 		CEB5E53B294BDA6700B89098 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5E53A294BDA6700B89098 /* ContentView.swift */; };
 		CEB5E53D294BDA6800B89098 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB5E53C294BDA6800B89098 /* Assets.xcassets */; };
 		CEB5E540294BDA6800B89098 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB5E53F294BDA6800B89098 /* Preview Assets.xcassets */; };
 		CEB5E542294BDA6800B89098 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5E541294BDA6800B89098 /* Persistence.swift */; };
 		CEB5E545294BDA6800B89098 /* paycycle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEB5E543294BDA6800B89098 /* paycycle.xcdatamodeld */; };
+		CEB5E54E294BDF1100B89098 /* DayComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5E54D294BDF1100B89098 /* DayComponent.swift */; };
+		CEB5E550294BE32500B89098 /* CycleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5E54F294BE32500B89098 /* CycleComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE21BA44294CF64F00CE8CBC /* CreateCycleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCycleView.swift; sourceTree = "<group>"; };
+		CE90A466294F3F7C00EF292F /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		CEB5E535294BDA6700B89098 /* paycycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = paycycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB5E538294BDA6700B89098 /* paycycleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paycycleApp.swift; sourceTree = "<group>"; };
 		CEB5E53A294BDA6700B89098 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -23,6 +29,8 @@
 		CEB5E53F294BDA6800B89098 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CEB5E541294BDA6800B89098 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		CEB5E544294BDA6800B89098 /* paycycle.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = paycycle.xcdatamodel; sourceTree = "<group>"; };
+		CEB5E54D294BDF1100B89098 /* DayComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayComponent.swift; sourceTree = "<group>"; };
+		CEB5E54F294BE32500B89098 /* CycleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +44,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE21BA42294CF62200CE8CBC /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				CE21BA43294CF62B00CE8CBC /* CreateCycle */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		CE21BA43294CF62B00CE8CBC /* CreateCycle */ = {
+			isa = PBXGroup;
+			children = (
+				CE21BA44294CF64F00CE8CBC /* CreateCycleView.swift */,
+			);
+			path = CreateCycle;
+			sourceTree = "<group>";
+		};
 		CEB5E52C294BDA6700B89098 = {
 			isa = PBXGroup;
 			children = (
@@ -55,6 +79,7 @@
 		CEB5E537294BDA6700B89098 /* paycycle */ = {
 			isa = PBXGroup;
 			children = (
+				CEB5E54B294BDEE600B89098 /* Source */,
 				CEB5E538294BDA6700B89098 /* paycycleApp.swift */,
 				CEB5E53A294BDA6700B89098 /* ContentView.swift */,
 				CEB5E53C294BDA6800B89098 /* Assets.xcassets */,
@@ -71,6 +96,25 @@
 				CEB5E53F294BDA6800B89098 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CEB5E54B294BDEE600B89098 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				CE21BA42294CF62200CE8CBC /* Modules */,
+				CEB5E54C294BDEF600B89098 /* Components */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		CEB5E54C294BDEF600B89098 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CEB5E54D294BDF1100B89098 /* DayComponent.swift */,
+				CEB5E54F294BE32500B89098 /* CycleComponent.swift */,
+				CE90A466294F3F7C00EF292F /* PickerTextField.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,10 +187,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB5E550294BE32500B89098 /* CycleComponent.swift in Sources */,
 				CEB5E542294BDA6800B89098 /* Persistence.swift in Sources */,
+				CEB5E54E294BDF1100B89098 /* DayComponent.swift in Sources */,
+				CE21BA45294CF64F00CE8CBC /* CreateCycleView.swift in Sources */,
 				CEB5E53B294BDA6700B89098 /* ContentView.swift in Sources */,
 				CEB5E539294BDA6700B89098 /* paycycleApp.swift in Sources */,
 				CEB5E545294BDA6800B89098 /* paycycle.xcdatamodeld in Sources */,
+				CE90A467294F3F7C00EF292F /* PickerTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
