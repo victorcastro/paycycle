@@ -14,8 +14,10 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newItem = CCCycleEntity(context: viewContext)
+            newItem.dayStart = 11
+            newItem.dayFinish = 10
+            newItem.dayPay = 5
         }
         do {
             try viewContext.save()

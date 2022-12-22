@@ -56,7 +56,6 @@ struct CycleComponent: View {
     }
     
     private func textDate(date: Date) -> Text {
-        
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "dd MMM"
         
@@ -92,15 +91,11 @@ struct CycleComponent: View {
                                             Rectangle().fill(.red).frame(width: g2.size.width * 0.0)
                                         }
                                     }
-                                    
-                                    
-                                    
                                 }
                                 .frame(width: geometry.size.width)
                                 .background(.gray)
                             }
                         }.frame(height: 8)
-                        
                     }
                     
                     HStack {
@@ -113,8 +108,6 @@ struct CycleComponent: View {
                     
                 }
             }
-            
         }
-        
     }
 }
