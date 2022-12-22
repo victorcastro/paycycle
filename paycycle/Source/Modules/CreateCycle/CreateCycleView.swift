@@ -9,6 +9,9 @@ import SwiftUI
 
 struct CreateCycleView: View {
     
+    @Environment(\.managedObjectContext) var context
+    @FetchRequest(entity: CCCycleEntity.entity(), sortDescriptors: []) var cycles: FetchedResults<CCCycleEntity>
+    
     @State private var label = ""
     @State private var dStart: Int?
     @State private var dFinish: Int?
@@ -16,7 +19,7 @@ struct CreateCycleView: View {
     
     private var days: [String] {
         var r: [String] = []
-        for num in 1...22 {
+        for num in 1...25 {
             r.append("\(num)")
         }
         
@@ -25,7 +28,14 @@ struct CreateCycleView: View {
     
     var body: some View {
         VStack {
-            
+            List{
+                ForEach(cycles, id: \.id) { c in
+                    HStack{
+                        Text(c.label ?? "-")
+                        Text("\(c.dayPay)")
+                    }
+                }
+            }
             HStack {
                 Text("Nombre: ")
                 TextField("", text: $label).textFieldStyle(.roundedBorder)
@@ -43,10 +53,26 @@ struct CreateCycleView: View {
                 PickerTextField(data: days, placeholder: "", lastSelectedIndex: $dPay)
             }
             Spacer()
-            Button(action: {}) {
+            Button(action: saveCycle) {
                 Text("Guardar")
             }
         }.padding(.horizontal)
+    }
+    
+    private func saveCycle() {
+        
+        if let dStart = self.dStart, let dFinish = self.dFinish, let dPay = self.dPay {
+            print(cycles)
+            
+            let cycle = CCCycleEntity(context: context)
+            cycle.label = label
+            cycle.dayStart = Int16(days[dStart])!
+            cycle.dayFinish = Int16(days[dFinish])!
+            cycle.dayPay = Int16(days[dPay])!
+            print(cycle)
+            
+            try? self.context.save()
+        }
     }
 }
 

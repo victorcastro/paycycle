@@ -10,40 +10,42 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
     
-//    @FetchRequest(
-//        sortDescriptors: [NSSortDescriptor(keyPath: \CycleEntity.id, ascending: true)],
-//        animation: .default)
+    //    @FetchRequest(
+    //        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+    //        animation: .default)
+    
+    @FetchRequest(entity: CCCycleEntity.entity(), sortDescriptors: []) var cycles: FetchedResults<CCCycleEntity>
+    
+    //    @FetchRequest(
+    //        sortDescriptors: [NSSortDescriptor(keyPath: \CycleEntity.id, ascending: true)],
+    //        animation: .default)
     
     
-    private var items: FetchedResults<Item>
-//    private var cycles: FetchedResults<CycleEntity>
+    // private var items: FetchedResults<Item>
+    //    private var cycles: FetchedResults<CycleEntity>
     
-    private var cycles: [Cycle] {
-        let fmt = DateFormatter()
-        fmt.locale = Locale(identifier: "en_US_POSIX")
-        fmt.dateFormat = "yyyy-MM-dd"
-        
-        return [
-            Cycle(id: "001", label: "BCO", dayStart: fmt.date(from: "2022-12-12")!, dayFinish: fmt.date(from: "2023-01-11")!, dayPay: fmt.date(from: "2023-02-05")!),
-            Cycle(id: "002", label: "BVA", dayStart: fmt.date(from: "2022-11-19")!, dayFinish: fmt.date(from: "2022-12-18")!, dayPay: fmt.date(from: "2023-01-06")!)
-        ]
-    }
-
+    //    private var cycles: [Cycle] {
+    //        let fmt = DateFormatter()
+    //        fmt.locale = Locale(identifier: "en_US_POSIX")
+    //        fmt.dateFormat = "yyyy-MM-dd"
+    //
+    //        return [
+    //            Cycle(id: "001", label: "BCO", dayStart: fmt.date(from: "2022-12-12")!, dayFinish: fmt.date(from: "2023-01-11")!, dayPay: fmt.date(from: "2023-02-05")!),
+    //            Cycle(id: "002", label: "BVA", dayStart: fmt.date(from: "2022-11-19")!, dayFinish: fmt.date(from: "2022-12-18")!, dayPay: fmt.date(from: "2023-01-06")!)
+    //        ]
+    //    }
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
                 DayComponent().padding(.horizontal)
                 
                 List {
-                    ForEach(cycles, id: \.id) { cycle in
-                        CycleComponent(cycle: cycle).padding(.horizontal)
+                    ForEach(cycles, id: \.id) { c in
+                        CycleComponent(cycle: c).padding(.horizontal)
                     }
-                    .onDelete(perform: deleteItems)
+                    .onDelete(perform: deleteCycles)
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -51,9 +53,7 @@ struct ContentView: View {
                     }
                     ToolbarItem {
                         NavigationLink(destination: CreateCycleView()) {
-                            
-                                Label("Add Item", systemImage: "plus")
-                            
+                            Label("Add Item", systemImage: "plus")
                         }
                         
                     }
@@ -61,7 +61,7 @@ struct ContentView: View {
             }.navigationBarTitle("Home", displayMode: .inline)
         }
     }
-
+    
     private func addItem() {
         withAnimation {
             
@@ -69,7 +69,7 @@ struct ContentView: View {
             
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
-
+            
             do {
                 try viewContext.save()
             } catch {
@@ -80,11 +80,11 @@ struct ContentView: View {
             }
         }
     }
-
-    private func deleteItems(offsets: IndexSet) {
+    
+    private func deleteCycles(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
+            offsets.map { cycles[$0] }.forEach(viewContext.delete)
+            
             do {
                 try viewContext.save()
             } catch {
@@ -106,6 +106,7 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
+        
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
