@@ -36,32 +36,48 @@ struct CycleComponent: View {
         let datePay = try? Date("\(cycle.dayPay)-\(Int(currentMonth)! + 1)-\(currentYear)", strategy: parseStrategy)
         
         if let dateStart = dateStart, let dateFinish = dateFinish, let datePay = datePay {
-            let timeCycle = Calendar.current.dateComponents([.day], from: dateStart, to: dateFinish)
-            let timeCycleToNow = Calendar.current.dateComponents([.day], from: dateStart, to: Date.now)
-            
-            let timeCycleToPay = Calendar.current.dateComponents([.day], from: dateFinish, to: datePay)
-            let timeCycleToPayNow = Calendar.current.dateComponents([.day], from: dateFinish, to: Date.now)
-            
-            print(timeCycle.day, timeCycleToNow.day, timeCycleToPay.day, timeCycleToPayNow.day)
+            let pTotal = getPercentegeDaysPassed(dateStart: dateStart, dateFinish: datePay)
+            let pCycle = getPercentegeDaysPassed(dateStart: dateStart, dateFinish: dateFinish, isNeedRoundOne: true)
+            let pPay = getPercentegeDaysPassed(dateStart: dateFinish, dateFinish: datePay, isNeedRoundOne: true)
+ 
             
             if (Int(currentDay)! > cycle.dayPay && Date.now > dateFinish) {
                 let datePay2 = try? Date("\(cycle.dayPay)-\(Int(currentMonth)! + 2)-\(currentYear)", strategy: parseStrategy)
                 let dateFinish2 = try? Date("\(cycle.dayFinish)-\(Int(currentMonth)! + 1)-\(currentYear)", strategy: parseStrategy)
                 let dateStart2 = try? Date("\(cycle.dayStart)-\(currentMonth)-\(currentYear)", strategy: parseStrategy)
                 
-                return [
-                    CycleModel(label: cycle.label!, dateStart: dateStart, dateFinish: dateFinish, datePay: datePay, percentageTotal: 0.7, percentageCycle: 0.60, percentagePay: 0),
-                    CycleModel(label: cycle.label!, dateStart: dateStart2!, dateFinish: dateFinish2!, datePay: datePay2!, percentageTotal: 0.9, percentageCycle: 1, percentagePay: 0.60)
-                ]
+                if let dateStart2 = dateStart2, let dateFinish2 = dateFinish2, let datePay2 = datePay2 {
+                    let pTotal2 = getPercentegeDaysPassed(dateStart: dateStart2, dateFinish: datePay2)
+                    let pCycle2 = getPercentegeDaysPassed(dateStart: dateStart2, dateFinish: dateFinish2, isNeedRoundOne: true)
+                    let pPay2 = getPercentegeDaysPassed(dateStart: dateFinish2, dateFinish: datePay2, isNeedRoundOne: true)
+                    
+                    
+                    return [
+                        CycleModel(label: cycle.label!, dateStart: dateStart, dateFinish: dateFinish, datePay: datePay, percentageTotal: pTotal, percentageCycle: pCycle, percentagePay: pPay),
+                        CycleModel(label: cycle.label!, dateStart: dateStart2, dateFinish: dateFinish2, datePay: datePay2!, percentageTotal: pTotal2, percentageCycle: pCycle2, percentagePay: pPay2)
+                    ]
+                }
             }
                 
             return [
-                CycleModel(label: cycle.label!, dateStart: dateStart, dateFinish: dateFinish, datePay: datePay, percentageTotal: 0.4, percentageCycle: 1, percentagePay: 0.53)
+                CycleModel(label: cycle.label!, dateStart: dateStart, dateFinish: dateFinish, datePay: datePay, percentageTotal: pTotal, percentageCycle: pCycle, percentagePay: pPay)
             ]
         }
         
         return []
         
+    }
+    
+    private func getPercentegeDaysPassed(dateStart: Date, dateFinish: Date, isNeedRoundOne: Bool = false) -> Double {
+        let timeTotal = Calendar.current.dateComponents([.day], from: dateStart, to: dateFinish)
+        let timeTotalPassed = Calendar.current.dateComponents([.day], from: dateStart, to: Date.now)
+        let percentageTotal: Double = Double(timeTotalPassed.day!) / Double(timeTotal.day!)
+        
+        if isNeedRoundOne {
+            return percentageTotal > 1 ? 1 : percentageTotal
+        }
+        
+        return percentageTotal
     }
     
     private func labelSubCycle(cycle: CycleModel) -> Text {
