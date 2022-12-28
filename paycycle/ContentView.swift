@@ -12,7 +12,10 @@ struct ContentView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.dayPay)]) var cycles: FetchedResults<CCCycleEntity>
+    @FetchRequest(sortDescriptors: [
+        // SortDescriptor(\.order)
+        NSSortDescriptor(keyPath: \CCCycleEntity.order, ascending: true)
+    ]) var cycles: FetchedResults<CCCycleEntity>
     
     var body: some View {
         NavigationView {
@@ -24,6 +27,7 @@ struct ContentView: View {
                         CycleComponent(cycle: c).padding(.horizontal)
                     }
                     .onDelete(perform: deleteCycles)
+                    .onMove(perform: move)
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -37,6 +41,21 @@ struct ContentView: View {
                     }
                 }.listStyle(.plain)
             }.navigationBarTitle("Home", displayMode: .inline)
+        }
+    }
+    
+    private func move(from source: IndexSet, to destination: Int) {
+        // Make an array of items from fetched results
+        var revisedItems: [ CCCycleEntity ] = cycles.map{ $0 }
+        
+        // change the order of the items in the array
+        revisedItems.move(fromOffsets: source, toOffset: destination )
+        
+        // update the userOrder attribute in revisedItems to
+        // persist the new order. This is done in reverse order
+        // to minimize changes to the indices.
+        for reverseIndex in stride( from: revisedItems.count - 1, through: 0, by: -1 ) {
+            cycles[ reverseIndex ].order = Int16( reverseIndex )
         }
     }
     

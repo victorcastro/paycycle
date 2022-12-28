@@ -39,7 +39,7 @@ struct CycleComponent: View {
             let pTotal = getPercentegeDaysPassed(dateStart: dateStart, dateFinish: datePay)
             let pCycle = getPercentegeDaysPassed(dateStart: dateStart, dateFinish: dateFinish, isNeedRoundOne: true)
             let pPay = getPercentegeDaysPassed(dateStart: dateFinish, dateFinish: datePay, isNeedRoundOne: true)
- 
+            
             
             if (Int(currentDay)! > cycle.dayPay && Date.now > dateFinish) {
                 let datePay2 = try? Date("\(cycle.dayPay)-\(Int(currentMonth)! + 2)-\(currentYear)", strategy: parseStrategy)
@@ -54,11 +54,11 @@ struct CycleComponent: View {
                     
                     return [
                         CycleModel(label: cycle.label!, dateStart: dateStart, dateFinish: dateFinish, datePay: datePay, percentageTotal: pTotal, percentageCycle: pCycle, percentagePay: pPay),
-                        CycleModel(label: cycle.label!, dateStart: dateStart2, dateFinish: dateFinish2, datePay: datePay2!, percentageTotal: pTotal2, percentageCycle: pCycle2, percentagePay: pPay2)
+                        CycleModel(label: cycle.label!, dateStart: dateStart2, dateFinish: dateFinish2, datePay: datePay2, percentageTotal: pTotal2, percentageCycle: pCycle2, percentagePay: pPay2)
                     ]
                 }
             }
-                
+            
             return [
                 CycleModel(label: cycle.label!, dateStart: dateStart, dateFinish: dateFinish, datePay: datePay, percentageTotal: pTotal, percentageCycle: pCycle, percentagePay: pPay)
             ]
@@ -71,13 +71,13 @@ struct CycleComponent: View {
     private func getPercentegeDaysPassed(dateStart: Date, dateFinish: Date, isNeedRoundOne: Bool = false) -> Double {
         let timeTotal = Calendar.current.dateComponents([.day], from: dateStart, to: dateFinish)
         let timeTotalPassed = Calendar.current.dateComponents([.day], from: dateStart, to: Date.now)
-        let percentageTotal: Double = Double(timeTotalPassed.day!) / Double(timeTotal.day!)
+        let percentageTotal = Double(timeTotalPassed.day!) / Double(timeTotal.day!)
         
         if isNeedRoundOne {
-            return percentageTotal > 1 ? 1 : percentageTotal
+            return percentageTotal > 1 ? 1 : round(percentageTotal * 100) / 100
         }
         
-        return percentageTotal
+        return round(percentageTotal * 100) / 100
     }
     
     private func labelSubCycle(cycle: CycleModel) -> Text {
@@ -110,26 +110,40 @@ struct CycleComponent: View {
                             Text("Pago")
                         }
                         
-                        ZStack() {
-                            GeometryReader { geometry in
-                                HStack(spacing: 0.0) {
-                                    Section() {
-                                        GeometryReader { g1 in
-                                            Rectangle().fill(.green).frame(width: g1.size.width * subcycle.percentageCycle)
-                                        }
-                                    }
-                                    Section() {
-                                        GeometryReader { g2 in
-                                            Rectangle().fill(.blue).frame(width: g2.size.width * subcycle.percentagePay)
+                        HStack(spacing: 0.0) {
+                            Section() {
+                                GeometryReader { g1 in
+                                    Rectangle()
+                                        .fill(.green)
+                                        .frame(width: g1.size.width * subcycle.percentageCycle, height: 8)
+                                    ZStack {
+                                        if (subcycle.percentageCycle != 1) {
+                                            Image(systemName: "arrowtriangle.up.fill")
+                                                .foregroundColor(Color.yellow)
+                                                .imageScale(.small)
+                                                .position(x: g1.size.width * subcycle.percentageCycle, y: 13)
                                         }
                                     }
                                 }
-                                .frame(width: geometry.size.width)
-                                .background(.gray)
-                                Image(systemName: "arrowtriangle.up.fill").foregroundColor(Color.yellow).imageScale(.small)
-                                    .position(x: geometry.size.width * subcycle.percentageTotal, y: 13)
                             }
-                        }.frame(height: 8)
+                            Section() {
+                                GeometryReader { g2 in
+                                    Rectangle()
+                                        .fill(.blue)
+                                        .frame(width: g2.size.width * subcycle.percentagePay, height: 8)
+                                    ZStack {
+                                        if (subcycle.percentageCycle == 1 && subcycle.percentagePay != 1) {
+                                            Image(systemName: "arrowtriangle.up.fill")
+                                                .foregroundColor(Color.yellow)
+                                                .imageScale(.small)
+                                                .position(x: g2.size.width * subcycle.percentagePay, y: 13)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .background(.gray)
+                        .frame(height: 8)
                     }
                     
                     HStack {

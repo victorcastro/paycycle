@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct CreateCycleView: View {
-    
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.managedObjectContext) var context
+    @FetchRequest(sortDescriptors: []) var cycles: FetchedResults<CCCycleEntity>
     
     @State private var label = ""
     @State private var dStart: Int?
@@ -33,15 +34,18 @@ struct CreateCycleView: View {
             }
             HStack {
                 Text("Fecha de inicio: ")
-                PickerTextField(data: days, placeholder: "", lastSelectedIndex: $dStart)
+                Spacer()
+                PickerTextField(data: days, placeholder: "", lastSelectedIndex: $dStart).frame(width: 60, height: 40)
             }
             HStack {
                 Text("Fecha de fin: ")
-                PickerTextField(data: days, placeholder: "", lastSelectedIndex: $dFinish)
+                Spacer()
+                PickerTextField(data: days, placeholder: "", lastSelectedIndex: $dFinish).frame(width: 60, height: 40)
             }
             HStack {
                 Text("Fecha de pago: ")
-                PickerTextField(data: days, placeholder: "", lastSelectedIndex: $dPay)
+                Spacer()
+                PickerTextField(data: days, placeholder: "", lastSelectedIndex: $dPay).frame(width: 60, height: 40)
             }
             Spacer()
             Button(action: saveCycle) {
@@ -59,9 +63,10 @@ struct CreateCycleView: View {
             cycle.dayStart = Int16(days[dStart])!
             cycle.dayFinish = Int16(days[dFinish])!
             cycle.dayPay = Int16(days[dPay])!
-            print(cycle)
+            cycle.order = Int16(cycles.count + 1)
             
             try? self.context.save()
+            dismiss()
         }
     }
 }
