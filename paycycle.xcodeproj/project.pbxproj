@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		CE21BA45294CF64F00CE8CBC /* CreateCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE21BA44294CF64F00CE8CBC /* CreateCycleView.swift */; };
+		CE442909295D0E5D0054A55A /* paycycle-watchOS Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CE442908295D0E5D0054A55A /* paycycle-watchOS Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CE44290E295D0E5D0054A55A /* paycycle_watchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44290D295D0E5D0054A55A /* paycycle_watchOSApp.swift */; };
+		CE442910295D0E5D0054A55A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44290F295D0E5D0054A55A /* ContentView.swift */; };
+		CE442912295D0E5E0054A55A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE442911295D0E5E0054A55A /* Assets.xcassets */; };
+		CE442915295D0E5E0054A55A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE442914295D0E5E0054A55A /* Preview Assets.xcassets */; };
 		CE90A467294F3F7C00EF292F /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90A466294F3F7C00EF292F /* PickerTextField.swift */; };
 		CEB5E539294BDA6700B89098 /* paycycleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5E538294BDA6700B89098 /* paycycleApp.swift */; };
 		CEB5E53B294BDA6700B89098 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5E53A294BDA6700B89098 /* ContentView.swift */; };
@@ -19,8 +24,38 @@
 		CEB5E550294BE32500B89098 /* CycleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB5E54F294BE32500B89098 /* CycleComponent.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CE44290A295D0E5D0054A55A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEB5E52D294BDA6700B89098 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE442907295D0E5D0054A55A;
+			remoteInfo = "paycycle-watchOS Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CE442918295D0E5E0054A55A /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				CE442909295D0E5D0054A55A /* paycycle-watchOS Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		CE21BA44294CF64F00CE8CBC /* CreateCycleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCycleView.swift; sourceTree = "<group>"; };
+		CE442903295D0E5D0054A55A /* paycycle-watchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "paycycle-watchOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE442908295D0E5D0054A55A /* paycycle-watchOS Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "paycycle-watchOS Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE44290D295D0E5D0054A55A /* paycycle_watchOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paycycle_watchOSApp.swift; sourceTree = "<group>"; };
+		CE44290F295D0E5D0054A55A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CE442911295D0E5E0054A55A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE442914295D0E5E0054A55A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CE90A466294F3F7C00EF292F /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
 		CEB5E535294BDA6700B89098 /* paycycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = paycycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB5E538294BDA6700B89098 /* paycycleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paycycleApp.swift; sourceTree = "<group>"; };
@@ -34,6 +69,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CE442905295D0E5D0054A55A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEB5E532294BDA6700B89098 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -60,10 +102,30 @@
 			path = CreateCycle;
 			sourceTree = "<group>";
 		};
+		CE44290C295D0E5D0054A55A /* paycycle-watchOS Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				CE44290D295D0E5D0054A55A /* paycycle_watchOSApp.swift */,
+				CE44290F295D0E5D0054A55A /* ContentView.swift */,
+				CE442911295D0E5E0054A55A /* Assets.xcassets */,
+				CE442913295D0E5E0054A55A /* Preview Content */,
+			);
+			path = "paycycle-watchOS Watch App";
+			sourceTree = "<group>";
+		};
+		CE442913295D0E5E0054A55A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CE442914295D0E5E0054A55A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		CEB5E52C294BDA6700B89098 = {
 			isa = PBXGroup;
 			children = (
 				CEB5E537294BDA6700B89098 /* paycycle */,
+				CE44290C295D0E5D0054A55A /* paycycle-watchOS Watch App */,
 				CEB5E536294BDA6700B89098 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				CEB5E535294BDA6700B89098 /* paycycle.app */,
+				CE442903295D0E5D0054A55A /* paycycle-watchOS.app */,
+				CE442908295D0E5D0054A55A /* paycycle-watchOS Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,6 +184,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CE442902295D0E5D0054A55A /* paycycle-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE44291C295D0E5E0054A55A /* Build configuration list for PBXNativeTarget "paycycle-watchOS" */;
+			buildPhases = (
+				CE442901295D0E5D0054A55A /* Resources */,
+				CE442918295D0E5E0054A55A /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE44290B295D0E5D0054A55A /* PBXTargetDependency */,
+			);
+			name = "paycycle-watchOS";
+			productName = "paycycle-watchOS";
+			productReference = CE442903295D0E5D0054A55A /* paycycle-watchOS.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		CE442907295D0E5D0054A55A /* paycycle-watchOS Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE44291B295D0E5E0054A55A /* Build configuration list for PBXNativeTarget "paycycle-watchOS Watch App" */;
+			buildPhases = (
+				CE442904295D0E5D0054A55A /* Sources */,
+				CE442905295D0E5D0054A55A /* Frameworks */,
+				CE442906295D0E5D0054A55A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "paycycle-watchOS Watch App";
+			productName = "paycycle-watchOS Watch App";
+			productReference = CE442908295D0E5D0054A55A /* paycycle-watchOS Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 		CEB5E534294BDA6700B89098 /* paycycle */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEB5E548294BDA6800B89098 /* Build configuration list for PBXNativeTarget "paycycle" */;
@@ -144,9 +242,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					CE442902295D0E5D0054A55A = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					CE442907295D0E5D0054A55A = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					CEB5E534294BDA6700B89098 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -166,11 +270,29 @@
 			projectRoot = "";
 			targets = (
 				CEB5E534294BDA6700B89098 /* paycycle */,
+				CE442902295D0E5D0054A55A /* paycycle-watchOS */,
+				CE442907295D0E5D0054A55A /* paycycle-watchOS Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CE442901295D0E5D0054A55A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE442906295D0E5D0054A55A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE442915295D0E5E0054A55A /* Preview Assets.xcassets in Resources */,
+				CE442912295D0E5E0054A55A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEB5E533294BDA6700B89098 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -183,6 +305,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CE442904295D0E5D0054A55A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE442910295D0E5D0054A55A /* ContentView.swift in Sources */,
+				CE44290E295D0E5D0054A55A /* paycycle_watchOSApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEB5E531294BDA6700B89098 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -200,7 +331,109 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		CE44290B295D0E5D0054A55A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE442907295D0E5D0054A55A /* paycycle-watchOS Watch App */;
+			targetProxy = CE44290A295D0E5D0054A55A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		CE442916295D0E5E0054A55A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4G9UQ8D789;
+				INFOPLIST_KEY_CFBundleDisplayName = "paycycle-watchOS";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.victorcastro.paycycle-watchOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		CE442917295D0E5E0054A55A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4G9UQ8D789;
+				INFOPLIST_KEY_CFBundleDisplayName = "paycycle-watchOS";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.victorcastro.paycycle-watchOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		CE442919295D0E5E0054A55A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"paycycle-watchOS Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 4G9UQ8D789;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "paycycle-watchOS";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.victorcastro.paycycle-watchOS.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		CE44291A295D0E5E0054A55A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"paycycle-watchOS Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 4G9UQ8D789;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "paycycle-watchOS";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.victorcastro.paycycle-watchOS.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Release;
+		};
 		CEB5E546294BDA6800B89098 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -380,6 +613,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CE44291B295D0E5E0054A55A /* Build configuration list for PBXNativeTarget "paycycle-watchOS Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE442919295D0E5E0054A55A /* Debug */,
+				CE44291A295D0E5E0054A55A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE44291C295D0E5E0054A55A /* Build configuration list for PBXNativeTarget "paycycle-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE442916295D0E5E0054A55A /* Debug */,
+				CE442917295D0E5E0054A55A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CEB5E530294BDA6700B89098 /* Build configuration list for PBXProject "paycycle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

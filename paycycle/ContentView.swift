@@ -13,8 +13,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @FetchRequest(sortDescriptors: [
-        // SortDescriptor(\.order)
-        NSSortDescriptor(keyPath: \CCCycleEntity.order, ascending: true)
+        NSSortDescriptor(keyPath: \CCCycleEntity.order, ascending: false)
     ]) var cycles: FetchedResults<CCCycleEntity>
     
     var body: some View {
@@ -27,7 +26,7 @@ struct ContentView: View {
                         CycleComponent(cycle: c).padding(.horizontal)
                     }
                     .onDelete(perform: deleteCycles)
-                    .onMove(perform: move)
+                    .onMove(perform: moveCycles)
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -37,45 +36,27 @@ struct ContentView: View {
                         NavigationLink(destination: CreateCycleView()) {
                             Label("Add Item", systemImage: "plus")
                         }
-                        
                     }
                 }.listStyle(.plain)
-            }.navigationBarTitle("Home", displayMode: .inline)
+            }
         }
     }
     
-    private func move(from source: IndexSet, to destination: Int) {
+    private func moveCycles(from source: IndexSet, to destination: Int) {
         // Make an array of items from fetched results
-        var revisedItems: [ CCCycleEntity ] = cycles.map{ $0 }
+        var revisedItems: [CCCycleEntity] = cycles.map { $0 }
         
         // change the order of the items in the array
-        revisedItems.move(fromOffsets: source, toOffset: destination )
+        revisedItems.move(fromOffsets: source, toOffset: destination)
         
         // update the userOrder attribute in revisedItems to
         // persist the new order. This is done in reverse order
         // to minimize changes to the indices.
-        for reverseIndex in stride( from: revisedItems.count - 1, through: 0, by: -1 ) {
-            cycles[ reverseIndex ].order = Int16( reverseIndex )
+        for reverseIndex in stride(from: revisedItems.count - 1, through: 0, by: -1) {
+            cycles[reverseIndex].order = Int16(reverseIndex)
         }
-    }
-    
-    private func addItem() {
-        withAnimation {
-            
-            
-            
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-            
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
+        
+        try? viewContext.save()
     }
     
     private func deleteCycles(offsets: IndexSet) {

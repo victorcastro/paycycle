@@ -63,7 +63,8 @@ struct CreateCycleView: View {
             cycle.dayStart = Int16(days[dStart])!
             cycle.dayFinish = Int16(days[dFinish])!
             cycle.dayPay = Int16(days[dPay])!
-            cycle.order = Int16(cycles.count + 1)
+            cycle.order = Int16(cycles.last?.order ?? 0 + 1)
+            cycle.timestamp = Date()
             
             try? self.context.save()
             dismiss()
